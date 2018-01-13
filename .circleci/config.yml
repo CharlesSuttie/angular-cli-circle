@@ -57,20 +57,22 @@ jobs:
           command: |
             sudo mkdir -p --verbose ~/junit
             sudo mkdir -p --verbose ~/junit/karma
-            sudo mkdir -p --verbose ~/junit/protractor
+#            sudo mkdir -p --verbose ~/junit/protractor
 
       - run:
           name: copy karma test results
           command: sudo cp -v test-results.xml ~/junit/karma
 
-      - run:
-          name: angular-e2e
-          command: yarn run e2e
+#      - run:
+#          name: angular-e2e
+#          command: yarn run e2e
+#
+#      - run:
+#          name: copy protractor test results
+#          command: sudo cp -v e2e.xml ~/junit/protractor
 
-      - run:
-          name: copy protractor test results
-          command: sudo cp -v e2e.xml ~/junit/protractor
-
+      # store the test results so they appear in Test Summary and Insights
+      # https://circleci.com/docs/2.0/collect-test-data/
       - store_test_results:
           path: ~/junit
 
@@ -78,20 +80,20 @@ jobs:
           path: ~/junit/karma/test-results.xml
           prefix: karma
 
-      - store_artifacts:
-          path: ~/junit/protractor/e2e.xml
-          prefix: protractor
+#      - store_artifacts:
+#          path: ~/junit/protractor/e2e.xml
+#          prefix: protractor
 
-      - run:
-          name: angular-build
-          command: yarn ng -- build --prod --aot --no-progress
-
-      - run:
-          name: angular-lint
-          command: yarn lint -- --formatters-dir ./tslint-formatters --format junit -o tslint.xml
-
-      - store_artifacts:
-          path: tslint.xml
-          prefix: lint
+#      - run:
+#          name: angular-build
+#          command: yarn ng -- build --prod --aot --no-progress
+#
+#      - run:
+#          name: angular-lint
+#          command: yarn lint -- --formatters-dir ./tslint-formatters --format junit -o tslint.xml
+#
+#      - store_artifacts:
+#          path: tslint.xml
+#          prefix: lint
 
 

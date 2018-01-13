@@ -7,7 +7,7 @@ jobs:
   build:
     branches:
       only:
-        - production-builds
+        - master
     docker:
       # specify the version you desire here
       # see https://hub.docker.com/r/circleci/node/tags/

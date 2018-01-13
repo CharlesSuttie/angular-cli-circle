@@ -57,6 +57,7 @@ jobs:
           command: |
             sudo mkdir -p --verbose ~/junit/karma
             sudo cp -v test-results.xml ~/junit/karma
+          when: always
 
       - store_artifacts:
           path: ~/junit/karma/test-results.xml
@@ -70,6 +71,7 @@ jobs:
           command: |
             sudo mkdir -p --verbose ~/junit/protractor
             sudo cp -v e2e.xml ~/junit/protractor
+          when: always
 
       - store_artifacts:
           path: ~/junit/protractor/e2e.xml

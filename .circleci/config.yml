@@ -1,0 +1,97 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    branches:
+      only:
+        - production-builds
+    docker:
+      # specify the version you desire here
+      # see https://hub.docker.com/r/circleci/node/tags/
+      - image: circleci/node:8.9.4-browsers
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run:
+          name: versions
+          command: |
+            node --version
+            npm --version
+            yarn --version
+
+#      Download and cache dependencies
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: yarn-install
+          command: yarn --no-progress --pure-lockfile
+
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+            - ./node_modules
+
+      - run:
+          name: rebuild node-sass
+          command: npm rebuild node-sass
+
+      - run:
+          name: angular-test
+          command: yarn run testCircle
+
+      - run:
+          name: make directories for test results
+          command: |
+            sudo mkdir -p --verbose ~/junit
+            sudo mkdir -p --verbose ~/junit/karma
+            sudo mkdir -p --verbose ~/junit/protractor
+
+      - run:
+          name: copy karma test results
+          command: sudo cp -v test-results.xml ~/junit/karma
+
+      - run:
+          name: angular-e2e
+          command: yarn run e2e
+
+      - run:
+          name: copy protractor test results
+          command: sudo cp -v e2e.xml ~/junit/protractor
+
+      - store_test_results:
+          path: ~/junit
+
+      - store_artifacts:
+          path: ~/junit/karma/test-results.xml
+          prefix: karma
+
+      - store_artifacts:
+          path: ~/junit/protractor/e2e.xml
+          prefix: protractor
+
+      - run:
+          name: angular-build
+          command: yarn ng -- build --prod --aot --no-progress
+
+      - run:
+          name: angular-lint
+          command: yarn lint -- --formatters-dir ./tslint-formatters --format junit -o tslint.xml
+
+      - store_artifacts:
+          path: tslint.xml
+          prefix: lint
+
+

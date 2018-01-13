@@ -61,7 +61,8 @@ jobs:
 
       - run:
           name: copy karma test results
-          command: sudo cp -v test-results.xml ~/junit/karma
+#         command: sudo cp -v test-results.xml ~/junit/karma
+          command: sudo cp -v test-results.xml ~/junit
 
 #      - run:
 #          name: angular-e2e

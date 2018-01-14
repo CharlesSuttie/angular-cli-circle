@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/CharlesSuttie/angular-cli-circle.svg?style=svg)](https://circleci.com/gh/CharlesSuttie/angular-cli-circle)
+[![CircleCI](https://circleci.com/gh/CharlesSuttie/angular-cli-circle.svg?style=shield)](https://circleci.com/gh/CharlesSuttie/angular-cli-circle)
 
 # NgCliCircle
 

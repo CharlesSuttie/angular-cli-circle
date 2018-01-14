@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/CharlesSuttie/angular-cli-circle.svg?style=svg)](https://circleci.com/gh/CharlesSuttie/angular-cli-circle)
+
 # NgCliCircle
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.4.

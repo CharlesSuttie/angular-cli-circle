@@ -51,6 +51,7 @@ jobs:
       - run:
           name: angular-test
           command: yarn run testCircle
+          when: always
 
       - run:
           name: copy the karma test results
@@ -65,6 +66,7 @@ jobs:
       - run:
           name: angular-e2e
           command: yarn run e2e
+          when: always
 
       - run:
           name: copy the protractor test results

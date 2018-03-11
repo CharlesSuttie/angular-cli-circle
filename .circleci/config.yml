@@ -50,7 +50,7 @@ jobs:
 
       - run:
           name: set alias for ng binary
-          command: alias my_ng="~/node_modules/.bin/ng"
+          command: alias my_ng="./node_modules/.bin/ng"
 
       - run:
           name: angular-test

@@ -49,12 +49,8 @@ jobs:
           command: npm rebuild node-sass
 
       - run:
-          name: add node_modules binary dir to PATH
-          command: PATH=$PATH:$PWD/node_modules/.bin/
-
-      - run:
           name: angular-test
-          command: ng test --environment=prod --sourcemap=false --single-run --progress=false --reporters=junit --browsers ChromeHeadless
+          command: ./node_modules/.bin/ng test --environment=prod --sourcemap=false --single-run --progress=false --reporters=junit --browsers ChromeHeadless
           when: always
 
       - run:
@@ -69,7 +65,7 @@ jobs:
 
       - run:
           name: angular-e2e
-          command: ng e2e
+          command: ./node_modules/.bin/ng e2e
           when: always
 
       - run:
@@ -84,7 +80,7 @@ jobs:
 
       - run:
           name: angular-lint
-          command: ng lint --format junit > tslint.xml
+          command: ./node_modules/.bin/ng lint --format junit > tslint.xml
           when: always
 
       - run:
@@ -104,7 +100,7 @@ jobs:
 
       - run:
           name: angular-build
-          command: ng build --prod --aot --no-progress
+          command: ./node_modules/.bin/ng build --prod --aot --no-progress
 
 
 

@@ -78,17 +78,25 @@ jobs:
       - store_artifacts:
           path: ~/junit/protractor/e2e.xml
 
+      - run:
+          name: angular-lint
+          command: ./node_modules/.bin/ng lint --format junit > tslint.xml
+          when: always
+
+      - run:
+          name: copy the lint results
+          command: |
+            sudo mkdir -p --verbose ~/junit/tslint
+            sudo cp -v tslint.xml ~/junit/tslint
+          when: always
+
       # store the test results so they appear in Test Summary and Insights
       # https://circleci.com/docs/2.0/collect-test-data/
       - store_test_results:
           path: ~/junit
 
-      - run:
-          name: angular-lint
-          command: ./node_modules/.bin/ng lint --format junit > tslint.xml
-
-      - store_artifacts:
-          path: tslint.xml
+#      - store_artifacts:
+#          path: tslint.xml
 
       - run:
           name: angular-build

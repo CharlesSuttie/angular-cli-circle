@@ -24,7 +24,7 @@ jobs:
       - checkout
 
       - run:
-          name: versions
+          name: echo versions
           command: |
             node --version
             npm --version
@@ -49,8 +49,12 @@ jobs:
           command: npm rebuild node-sass
 
       - run:
+          name: set alias for ng binary
+          command: alias my_ng="~/node_modules/.bin/ng"
+
+      - run:
           name: angular-test
-          command: ./node_modules/.bin/ng test --environment=prod --sourcemap=false --single-run --progress=false --reporters=junit --browsers ChromeHeadless
+          command: my_ng test --environment=prod --sourcemap=false --single-run --progress=false --reporters=junit --browsers ChromeHeadless
           when: always
 
       - run:
@@ -65,7 +69,7 @@ jobs:
 
       - run:
           name: angular-e2e
-          command: ./node_modules/.bin/ng e2e
+          command: my_ng e2e
           when: always
 
       - run:
@@ -80,7 +84,7 @@ jobs:
 
       - run:
           name: angular-lint
-          command: ./node_modules/.bin/ng lint --format junit > tslint.xml
+          command: my_ng lint --format junit > tslint.xml
           when: always
 
       - run:
@@ -90,17 +94,17 @@ jobs:
             sudo cp -v tslint.xml ~/junit/tslint
           when: always
 
+      - store_artifacts:
+          path: ~/junit/tslint/tslint.xml
+
       # store the test results so they appear in Test Summary and Insights
       # https://circleci.com/docs/2.0/collect-test-data/
       - store_test_results:
           path: ~/junit
 
-#      - store_artifacts:
-#          path: tslint.xml
-
       - run:
           name: angular-build
-          command: ./node_modules/.bin/ng build --prod --aot --no-progress
+          command: my_ng build --prod --aot --no-progress
 
 
 

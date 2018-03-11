@@ -50,7 +50,7 @@ jobs:
 
       - run:
           name: add node_modules binary dir to PATH
-          command: PATH=$PATH:./node_modules/.bin/
+          command: PATH=$PATH:$PWD/node_modules/.bin/
 
       - run:
           name: angular-test

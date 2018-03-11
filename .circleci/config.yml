@@ -50,11 +50,11 @@ jobs:
 
       - run:
           name: add node_modules binary dir to PATH
-          command: PATH = $PATH:./node_modules/.bin/
+          command: PATH=$PATH:./node_modules/.bin/
 
       - run:
           name: angular-test
-          command: my_ng test --environment=prod --sourcemap=false --single-run --progress=false --reporters=junit --browsers ChromeHeadless
+          command: ng test --environment=prod --sourcemap=false --single-run --progress=false --reporters=junit --browsers ChromeHeadless
           when: always
 
       - run:
@@ -69,7 +69,7 @@ jobs:
 
       - run:
           name: angular-e2e
-          command: my_ng e2e
+          command: ng e2e
           when: always
 
       - run:
@@ -84,7 +84,7 @@ jobs:
 
       - run:
           name: angular-lint
-          command: my_ng lint --format junit > tslint.xml
+          command: ng lint --format junit > tslint.xml
           when: always
 
       - run:
@@ -104,7 +104,7 @@ jobs:
 
       - run:
           name: angular-build
-          command: my_ng build --prod --aot --no-progress
+          command: ng build --prod --aot --no-progress
 
 
 

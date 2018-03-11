@@ -49,8 +49,8 @@ jobs:
           command: npm rebuild node-sass
 
       - run:
-          name: set alias for ng binary
-          command: alias my_ng="./node_modules/.bin/ng"
+          name: add node_modules binary dir to PATH
+          command: PATH = $PATH:./node_modules/.bin/
 
       - run:
           name: angular-test

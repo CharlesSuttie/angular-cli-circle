@@ -11,7 +11,7 @@ jobs:
     docker:
       # specify the version you desire here
       # see https://hub.docker.com/r/circleci/node/tags/
-      - image: circleci/node:8.10.0-browsers
+      - image: circleci/node:8.11.2-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -50,14 +50,14 @@ jobs:
 
       - run:
           name: angular-test
-          command: ./node_modules/.bin/ng test --environment=prod --sourcemap=false --single-run --progress=false --reporters=junit --browsers ChromeHeadless
+          command: ./node_modules/.bin/ng test --karma-config=./src/circle-karma.conf.ts --environment=prod --source-map=false --watch=false --progress=false
           when: always
 
       - run:
           name: copy the karma test results
           command: |
             sudo mkdir -p --verbose ~/junit/karma
-            sudo cp -v test-results.xml ~/junit/karma
+            sudo cp -v ./src/test-results.xml ~/junit/karma
           when: always
 
       - store_artifacts:
@@ -65,7 +65,7 @@ jobs:
 
       - run:
           name: angular-e2e
-          command: ./node_modules/.bin/ng e2e
+          command: ./node_modules/.bin/ng e2e --protractor-config=./e2e/circle-protractor.conf.js
           when: always
 
       - run:
@@ -80,7 +80,7 @@ jobs:
 
       - run:
           name: angular-lint
-          command: ./node_modules/.bin/ng lint --format junit > tslint.xml
+          command: ./node_modules/.bin/ng lint angular-cli-circle --format checkstyle > tslint.xml
           when: always
 
       - run:
@@ -100,7 +100,7 @@ jobs:
 
       - run:
           name: angular-build
-          command: ./node_modules/.bin/ng build --prod --aot --no-progress
+          command: ./node_modules/.bin/ng build --prod --aot --progress=false
 
 
 

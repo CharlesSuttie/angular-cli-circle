@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('ng-cli-circle App', () => {
+describe('workspace-project App', () => {
   let page: AppPage;
 
   beforeEach(() => {
@@ -9,7 +9,7 @@ describe('ng-cli-circle App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    // expect(page.getParagraphText()).toEqual('Welcome to app!');
-    expect(page.getParagraphText()).toEqual('not correct');
+    // expect(page.getParagraphText()).toEqual('Welcome to angular-cli-circle!');
+    expect(page.getParagraphText()).toEqual('Incorrect!');
   });
 });

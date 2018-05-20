@@ -11,7 +11,7 @@ jobs:
     docker:
       # specify the version you desire here
       # see https://hub.docker.com/r/circleci/node/tags/
-      - image: circleci/node:8.10.0-browsers
+      - image: circleci/node:8.11.2-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -100,7 +100,7 @@ jobs:
 
       - run:
           name: angular-build
-          command: ./node_modules/.bin/ng build --prod --aot --no-progress
+          command: ./node_modules/.bin/ng build --prod --aot --progress=false
 
 
 

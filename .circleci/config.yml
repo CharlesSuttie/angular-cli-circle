@@ -80,7 +80,7 @@ jobs:
 
       - run:
           name: angular-lint
-          command: ./node_modules/.bin/ng lint --format junit > tslint.xml
+          command: ./node_modules/.bin/ng lint angular-cli-circle --format junit > tslint.xml
           when: always
 
       - run:

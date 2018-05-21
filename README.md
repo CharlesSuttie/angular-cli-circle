@@ -10,7 +10,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 This repo contains a Circle CI configuration which works with the Angular CLI.
 
-There are also edits to the Karma and Protractor configuration files to save test results.
+There are also new Karma and Protractor configuration files, which include the ability to save test results.
  
 Test failures are displayed in the "Test Summary" tab after the build runs. For more details click on the Circle CI badge above.
 

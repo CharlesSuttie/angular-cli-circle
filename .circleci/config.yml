@@ -82,7 +82,7 @@ jobs:
 
       - run:
           name: angular-lint
-          command: yarn run lint --format checkstyle > tslint.xml
+          command: yarn run ng lint angular-cli-circle --format checkstyle > tslint.xml
 #          command: ./node_modules/.bin/ng lint angular-cli-circle --format checkstyle > tslint.xml
           when: always
 

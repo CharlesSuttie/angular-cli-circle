@@ -9,7 +9,7 @@
     "testCircle": "ng test --karma-config=./src/circle-karma.conf.ts --environment=prod --source-map=false --watch=false --progress=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "e2eCircle": "ng e2e --protractor-config=./e2e/circle-protractor.conf.js"
+    "e2eCircle": "ng e2e --prod --protractor-config=./e2e/circle-protractor.conf.js"
   },
   "private": true,
   "dependencies": {

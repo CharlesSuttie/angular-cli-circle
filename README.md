@@ -12,9 +12,16 @@ This repo contains a CircleCI configuration which works with the Angular CLI.
 
 The files which have been added or changed are:
 
-* CircleCI configuration [file](https://github.com/CharlesSuttie/angular-cli-circle/blob/master/.circleci/config.yml) (Added)
-* Protractor Configuration [file](https://github.com/CharlesSuttie/angular-cli-circle/blob/master/e2e/circle-protractor.conf.js) (New file added)
-* Karma Configuration [file](https://github.com/CharlesSuttie/angular-cli-circle/blob/master/src/circle-karma.conf.ts) (New file added)
+* CircleCI configuration [file](.circleci/config.yml) (Added)
+* Protractor Configuration [file](e2e/circle-protractor.conf.js) (New file added)
+* Karma Configuration [file](src/circle-karma.conf.ts) (New file added)
+
+The following new scripts have been added to [package.json](package.json):
+
+```
+"testCircle": "ng test --karma-config=./src/circle-karma.conf.ts --environment=prod --source-map=false --watch=false --progress=false"
+"e2eCircle": "ng e2e --prod --protractor-config=./e2e/circle-protractor.conf.js"
+```
 
 The configuration allows test results (failures) to be saved and displayed in the Test Summary section of CircleCI.
 

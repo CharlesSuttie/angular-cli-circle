@@ -6,13 +6,13 @@ import * as KarmaJasmine from 'karma-jasmine';
 import * as KarmaChromeLauncher from 'karma-chrome-launcher';
 import * as KarmaJUnitReporter from 'karma-junit-reporter';
 
-interface ExtendedConfigOptions extends ConfigOptions {
+interface ExtendedConfigOptions {
   junitReporter: {outputFile: string, useBrowserName: boolean};
+  customLaunchers: {[browser: string]: {base: string, flags: string[]}};
 }
 
-module.exports = (config: KarmaConfig) => {
-
-  const configOptions: ConfigOptions = {
+module.exports = (config: KarmaConfig & ExtendedConfigOptions) => {
+  config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
@@ -26,19 +26,21 @@ module.exports = (config: KarmaConfig) => {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     reporters: ['junit'],
+    junitReporter: {
+      outputFile: 'test-results.xml',
+      useBrowserName: false
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: false,
-    browsers: ['ChromeHeadless'],
+    browsers: ['myChromeHeadless'],
+    customLaunchers: {
+      myChromeHeadless: {
+        base: 'ChromeHeadless',
+        flags: [ '--disable-gpu' ] // required for Windows: see https://bugs.chromium.org/p/chromium/issues/detail?id=737678
+      }
+    },
     singleRun: true
-  };
-
-  const extendedConfigOptions: ExtendedConfigOptions = configOptions;
-    extendedConfigOptions.junitReporter = {
-    outputFile: 'test-results.xml',
-    useBrowserName: false
-  };
-
-  config.set(extendedConfigOptions);
+  });
 };

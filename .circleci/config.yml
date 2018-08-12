@@ -11,7 +11,7 @@ jobs:
     docker:
       # specify the version you desire here
       # see https://hub.docker.com/r/circleci/node/tags/
-      - image: circleci/node:8.11.2-browsers
+      - image: circleci/node:8-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -51,7 +51,6 @@ jobs:
       - run:
           name: angular-test
           command: yarn run testCircle
-#          command: ./node_modules/.bin/ng test --karma-config=./src/circle-karma.conf.ts --environment=prod --source-map=false --watch=false --progress=false
           when: always
 
       - run:
@@ -67,7 +66,6 @@ jobs:
       - run:
           name: angular-e2e
           command: yarn run e2eCircle
-#          command: ./node_modules/.bin/ng e2e --protractor-config=./e2e/circle-protractor.conf.js
           when: always
 
       - run:
@@ -83,7 +81,6 @@ jobs:
       - run:
           name: angular-lint
           command: yarn run ng lint angular-cli-circle --format checkstyle > tslint.xml
-#          command: ./node_modules/.bin/ng lint angular-cli-circle --format checkstyle > tslint.xml
           when: always
 
       - run:
@@ -104,14 +101,3 @@ jobs:
       - run:
           name: angular-build
           command: yarn run ng build --prod --aot --progress=false
-#          command: ./node_modules/.bin/ng build --prod --aot --progress=false
-
-
-
-
-
-
-
-
-
-

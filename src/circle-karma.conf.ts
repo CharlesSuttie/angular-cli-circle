@@ -34,11 +34,14 @@ module.exports = (config: KarmaConfig & ExtendedConfigOptions) => {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: false,
-    browsers: ['myChromeHeadless'],
+    browsers: ['ChromeHeadlessCI'],
     customLaunchers: {
-      myChromeHeadless: {
+      ChromeHeadlessCI: {
         base: 'ChromeHeadless',
-        flags: [ '--disable-gpu' ] // required for Windows: see https://bugs.chromium.org/p/chromium/issues/detail?id=737678
+        flags: [
+          '--disable-gpu', // required for Windows: see https://bugs.chromium.org/p/chromium/issues/detail?id=737678
+          '--no-sandbox'
+        ]
       }
     },
     singleRun: true

@@ -3,9 +3,9 @@ const jasmineReporters = require('jasmine-reporters');
 const config = require('./protractor.conf').config;
 
 config.capabilities = {
-  'browserName': 'chrome',
-  'chromeOptions': {
-    'args': ['--headless', '--disable-gpu']
+  browserName: 'chrome',
+  chromeOptions: {
+    args: ['--headless', '--no-sandbox', '--disable-gpu']
   }
 };
 

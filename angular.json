@@ -57,6 +57,9 @@
             "browserTarget": "angular-cli-circle:build"
           },
           "configurations": {
+            "ci": {
+              "progress": false
+            },
             "production": {
               "browserTarget": "angular-cli-circle:build:production"
             }
@@ -110,6 +113,10 @@
             "devServerTarget": "angular-cli-circle:serve"
           },
           "configurations": {
+            "ci": {
+              "devServerTarget": "angular-cli-circle:serve:ci",
+              "protractorConfig": "./e2e/circle-protractor.conf.js"
+            },
             "production": {
               "devServerTarget": "angular-cli-circle:serve:production"
             }

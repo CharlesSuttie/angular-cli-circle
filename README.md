@@ -3,11 +3,11 @@
 
 # Angular CLI and CircleCI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
 
 # CircleCI
 
-[CircleCI](https://circleci.com) very generously offer 1,500 minutes of build time on their free plan. 
+[CircleCI](https://circleci.com) very generously offer [1,000 minutes](https://circleci.com/pricing/) of build time on their free plan. 
 This repo contains a CircleCI configuration which works with the Angular CLI.
 
 The files which have been added or changed are:
